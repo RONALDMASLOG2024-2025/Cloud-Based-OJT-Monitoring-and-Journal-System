@@ -14,26 +14,20 @@ const theme = createTheme({
 });
 
 export default function LoginPage() {
-
-   const Navigate = useNavigate();
-    
+  const navigate = useNavigate();
 
   return (
     <Container maxWidth="xxl">
       <AppProvider theme={theme}>
         <SignInPage
           providers={[{ id: "google", name: "Google" }]}
-
           signIn={async (provider) => {
             // Your sign in logic
             alert(`Signing in with ${provider.name}`);
-            Navigate("/admin/dashboard");
-           
+            navigate("/admin/dashboard");
           }}
-          
         />
       </AppProvider>
-      
     </Container>
   );
 }
