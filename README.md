@@ -1,5 +1,6 @@
 ## 💡 System Title:
 # Cloud-Based OJT Monitoring and Journal System
+### https://ojtmon.vercel.app/
 
 ## 📘 System Description:
 The Cloud-Based OJT Monitoring and Journal System is a web-based platform designed to streamline and digitalize the entire On-the-Job Training (OJT) process for students and OJT coordinators. This system serves as a centralized hub where students can apply for OJT placements, maintain their digital journal entries in a social-media style interface, and submit their Daily Time Record (DTR) entries—eliminating the need for manual encoding and paperwork.
