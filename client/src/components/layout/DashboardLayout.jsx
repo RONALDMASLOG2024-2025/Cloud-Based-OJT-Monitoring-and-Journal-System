@@ -1,22 +1,29 @@
 import React from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import ResponsiveAppBar from "../common/ResponsiveAppBar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "../../features/landing/LandingPage";
 import LoginPage from "../../features/auth/LoginPage";
 
-export default function DashboardLayout() {
-  const location = window.location.pathname;
-  const isLoginPage = location === "/login";
+// Moved inside so we can use hooks like useLocation
+function AppContent() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <>
       {!isLoginPage && <ResponsiveAppBar />}
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage></LandingPage>} />
-          <Route path="/login" element={<LoginPage></LoginPage>} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
     </>
+  );
+}
+
+export default function DashboardLayout() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
