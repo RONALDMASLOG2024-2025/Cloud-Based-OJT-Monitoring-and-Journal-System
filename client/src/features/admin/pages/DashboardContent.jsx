@@ -1,7 +1,12 @@
-import React from 'react'
+import { Skeleton } from "@mui/material";
+import React from "react";
 
 export default function DashboardContent() {
   return (
-    <div>DashboardContent</div>
-  )
+    <>
+      <div>Dashboard Content</div>
+      <Skeleton />
+      <Skeleton variant="rectangular" height={"70vh"} />
+    </>
+  );
 }
