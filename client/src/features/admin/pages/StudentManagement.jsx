@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function StudentManagement() {
   return (
-    <div>StudentManagement</div>
+    <div>StudentManagement Hello</div>
   )
 }
