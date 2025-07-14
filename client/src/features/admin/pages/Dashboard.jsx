@@ -35,6 +35,7 @@ import CompanyManagement from "./CompanyManagement";
 import Chat from "./Chat";
 import Report from "./Report";
 import Settings from "./Settings";
+import NotFound from "../../../components/common/NotFound";
 
 /* ---- styling helpers ---- */
 const drawerWidth = 240;
@@ -183,7 +184,7 @@ export default function Dashboard() {
           <Route path="chat" element={<Chat />} />
           <Route path="report" element={<Report />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="*" element={<Navigate to="dashboard" replace />} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </Main>
     </Box>
