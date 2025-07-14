@@ -15,7 +15,7 @@ export default function LandingPage() {
       <ResponsiveAppBar></ResponsiveAppBar>
       <Container maxWidth="xxl">
         <Box sx={{ textAlign: "center", marginTop: 10 }}>
-          <Typography variant="h1" fontWeight="semibold">
+          <Typography variant="h6" fontWeight="semibold">
             Cloud-Based OJT Monitoring and Journal System
           </Typography>
 
