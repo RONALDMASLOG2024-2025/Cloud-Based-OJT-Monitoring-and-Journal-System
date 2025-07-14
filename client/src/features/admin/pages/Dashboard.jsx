@@ -29,17 +29,17 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 /* ---- page components ---- */
-import DashboardContent   from "./DashboardContent";
-import StudentManagement  from "./StudentManagement";
-import CompanyManagement  from "./CompanyManagement";
-import Chat               from "./Chat";
-import Report             from "./Report";
-import Settings           from "./Settings";
+import DashboardContent from "./DashboardContent";
+import StudentManagement from "./StudentManagement";
+import CompanyManagement from "./CompanyManagement";
+import Chat from "./Chat";
+import Report from "./Report";
+import Settings from "./Settings";
 
 /* ---- styling helpers ---- */
 const drawerWidth = 240;
 
-const Main = styled("main", { shouldForwardProp: p => p !== "open" })(
+const Main = styled("main", { shouldForwardProp: (p) => p !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -48,10 +48,10 @@ const Main = styled("main", { shouldForwardProp: p => p !== "open" })(
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: open ? 0 : `-${drawerWidth}px`,
-  }),
+  })
 );
 
-const AppBar = styled(MuiAppBar, { shouldForwardProp: p => p !== "open" })(
+const AppBar = styled(MuiAppBar, { shouldForwardProp: (p) => p !== "open" })(
   ({ theme, open }) => ({
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
@@ -65,7 +65,7 @@ const AppBar = styled(MuiAppBar, { shouldForwardProp: p => p !== "open" })(
         duration: theme.transitions.duration.enteringScreen,
       }),
     }),
-  }),
+  })
 );
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -78,22 +78,30 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 /* ===================================================================== */
 export default function Dashboard() {
-  const theme     = useTheme();
+  const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
-  const openDrawer  = () => setDrawerOpen(true);
+  const openDrawer = () => setDrawerOpen(true);
   const closeDrawer = () => setDrawerOpen(false);
 
   /* absolute URLs so they never “stack” */
   const menu = [
-    { label: "Dashboard",          icon: <DashboardIcon />, route: "/admin/dashboard" },
-    { label: "Student Management", icon: <SchoolIcon />,    route: "/admin/studentmanagement" },
-    { label: "Company Management", icon: <BusinessIcon />,  route: "/admin/company" },
-    { label: "Chat",               icon: <ChatIcon />,      route: "/admin/chat" },
-    { label: "Report",             icon: <AssessmentIcon />,route: "/admin/report" },
-    { label: "Settings",           icon: <SettingsIcon />,  route: "/admin/settings" },
+    { label: "Dashboard", icon: <DashboardIcon />, route: "/admin/dashboard" },
+    {
+      label: "Student Management",
+      icon: <SchoolIcon />,
+      route: "/admin/studentmanagement",
+    },
+    {
+      label: "Company Management",
+      icon: <BusinessIcon />,
+      route: "/admin/company",
+    },
+    { label: "Chat", icon: <ChatIcon />, route: "/admin/chat" },
+    { label: "Report", icon: <AssessmentIcon />, route: "/admin/report" },
+    { label: "Settings", icon: <SettingsIcon />, route: "/admin/settings" },
   ];
 
   return (
@@ -132,7 +140,11 @@ export default function Dashboard() {
       >
         <DrawerHeader>
           <IconButton onClick={closeDrawer}>
-            {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -154,19 +166,24 @@ export default function Dashboard() {
       </Drawer>
 
       {/* ▸▸ Main panel */}
-      <Main open={isDesktop && drawerOpen}>
+      <Main
+        open={isDesktop && drawerOpen}
+        sx={{
+          marginLeft: isDesktop ? (drawerOpen ? 0 : `-${drawerWidth}px`) : 0,
+        }}
+      >
         <DrawerHeader />
 
         {/* nested routes relative to /admin/* */}
         <Routes>
-          <Route index            element={<DashboardContent />} />
+          <Route index element={<DashboardContent />} />
           <Route path="dashboard" element={<DashboardContent />} />
           <Route path="studentmanagement" element={<StudentManagement />} />
-          <Route path="company"   element={<CompanyManagement />} />
-          <Route path="chat"      element={<Chat />} />
-          <Route path="report"    element={<Report />} />
-          <Route path="settings"  element={<Settings />} />
-          <Route path="*"         element={<Navigate to="dashboard" replace />} />
+          <Route path="company" element={<CompanyManagement />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="report" element={<Report />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="*" element={<Navigate to="dashboard" replace />} />
         </Routes>
       </Main>
     </Box>
