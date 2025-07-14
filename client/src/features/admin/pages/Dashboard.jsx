@@ -31,7 +31,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 /* ---- page components ---- */
 import DashboardContent from "./DashboardContent";
 import StudentManagement from "./StudentManagement";
-import CompanyManagement from "./CompanyManagement";
+import HTEManagement from "./HTEManagement";
 import Chat from "./Chat";
 import Report from "./Report";
 import Settings from "./Settings";
@@ -96,9 +96,9 @@ export default function Dashboard() {
       route: "/admin/studentmanagement",
     },
     {
-      label: "Company Management",
+      label: "HTE Management",
       icon: <BusinessIcon />,
-      route: "/admin/company",
+      route: "/admin/htemanagement",
     },
     { label: "Chat", icon: <ChatIcon />, route: "/admin/chat" },
     { label: "Report", icon: <AssessmentIcon />, route: "/admin/report" },
@@ -180,7 +180,7 @@ export default function Dashboard() {
           <Route index element={<DashboardContent />} />
           <Route path="dashboard" element={<DashboardContent />} />
           <Route path="studentmanagement" element={<StudentManagement />} />
-          <Route path="company" element={<CompanyManagement />} />
+          <Route path="htemanagement" element={<HTEManagement />} />
           <Route path="chat" element={<Chat />} />
           <Route path="report" element={<Report />} />
           <Route path="settings" element={<Settings />} />
