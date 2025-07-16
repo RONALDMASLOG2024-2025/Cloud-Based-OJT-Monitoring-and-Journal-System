@@ -13,6 +13,9 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Button,
+  Avatar,
+  Stack,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -26,6 +29,9 @@ import BusinessIcon from "@mui/icons-material/Business";
 import ChatIcon from "@mui/icons-material/Chat";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import SettingsIcon from "@mui/icons-material/Settings";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import EmailIcon from "@mui/icons-material/Email";
+
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 /* ---- page components ---- */
@@ -91,12 +97,12 @@ export default function Dashboard() {
   const menu = [
     { label: "Dashboard", icon: <DashboardIcon />, route: "/admin/dashboard" },
     {
-      label: "Student Management",
+      label: "Student",
       icon: <SchoolIcon />,
       route: "/admin/studentmanagement",
     },
     {
-      label: "HTE Management",
+      label: "HTE",
       icon: <BusinessIcon />,
       route: "/admin/htemanagement",
     },
@@ -110,7 +116,7 @@ export default function Dashboard() {
       <CssBaseline />
 
       {/* ▸▸ AppBar */}
-      <AppBar position="fixed" open={isDesktop && drawerOpen}>
+      <AppBar position="fixed" color="primary" open={isDesktop && drawerOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -120,9 +126,19 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Cloud‑OJT Admin
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
+            
           </Typography>
+
+          <Stack direction={"row"} spacing={2} alignItems="center">
+            <IconButton color="inherit">
+              <EmailIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <NotificationsIcon />
+            </IconButton>
+            <Avatar />
+          </Stack>
         </Toolbar>
       </AppBar>
 
@@ -184,7 +200,7 @@ export default function Dashboard() {
           <Route path="chat" element={<Chat />} />
           <Route path="report" element={<Report />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="*" element={<NotFound/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Main>
     </Box>

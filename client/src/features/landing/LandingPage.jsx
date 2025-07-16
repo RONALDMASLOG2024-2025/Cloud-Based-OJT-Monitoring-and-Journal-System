@@ -12,7 +12,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
   return (
     <>
-      <ResponsiveAppBar></ResponsiveAppBar>
+      <ResponsiveAppBar />
       <Container maxWidth="xxl">
         <Box sx={{ textAlign: "center", marginTop: 10 }}>
           <Typography variant="h6" fontWeight="semibold">
