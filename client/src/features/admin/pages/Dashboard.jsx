@@ -141,7 +141,7 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}></Typography>
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>Admin</Typography>
 
           <Stack direction={"row"} spacing={2} alignItems="center">
             <IconButton color="inherit" onClick={() => navigate("/admin/chat")}>
