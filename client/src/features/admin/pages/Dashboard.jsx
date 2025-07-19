@@ -16,6 +16,8 @@ import {
   Button,
   Avatar,
   Stack,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -31,9 +33,9 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import EmailIcon from "@mui/icons-material/Email";
-
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-
+import LogoutIcon from '@mui/icons-material/Logout';
 /* ---- page components ---- */
 import DashboardContent from "./DashboardContent";
 import StudentManagement from "./StudentManagement";
@@ -42,6 +44,8 @@ import Chat from "./Chat";
 import Report from "./Report";
 import Settings from "./Settings";
 import NotFound from "../../../components/common/NotFound";
+import Profile from "./Profile";
+import { Logout } from "@mui/icons-material";
 
 /* ---- styling helpers ---- */
 const drawerWidth = 240;
@@ -90,6 +94,17 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const openMenu = Boolean(anchorEl);
+
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
   const openDrawer = () => setDrawerOpen(true);
   const closeDrawer = () => setDrawerOpen(false);
 
@@ -126,18 +141,37 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-            
-          </Typography>
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}></Typography>
 
           <Stack direction={"row"} spacing={2} alignItems="center">
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={() => navigate("/admin/chat")}>
               <EmailIcon />
             </IconButton>
             <IconButton color="inherit">
               <NotificationsIcon />
             </IconButton>
-            <Avatar />
+            <div>
+              <IconButton size="small" onClick={handleOpenMenu}>
+                <Avatar />
+              </IconButton>
+              <Menu
+                open={openMenu}
+                onClose={handleCloseMenu}
+                anchorEl={anchorEl}
+              >
+                <MenuItem onClick={() => navigate("/admin/profile")}>
+                  <ListItemIcon>
+                    <AccountBoxIcon/>
+                  </ListItemIcon>
+                  <ListItemText> Profile</ListItemText>
+                </MenuItem>
+                <MenuItem onClick={() => navigate("/")}><ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText>Logout</ListItemText>
+                </MenuItem>
+              </Menu>
+            </div>
           </Stack>
         </Toolbar>
       </AppBar>
@@ -200,6 +234,7 @@ export default function Dashboard() {
           <Route path="chat" element={<Chat />} />
           <Route path="report" element={<Report />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Main>
